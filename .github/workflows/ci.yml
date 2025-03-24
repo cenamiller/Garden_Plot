@@ -11,19 +11,22 @@ on:
     branches:
       - main
 
+
+# The first job is a hello-world that checks out the code, prints a message, 
+# builds a Docker image, and runs a Docker container.
 jobs:
   hello-world:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3  
 
       - name: Say Hello
         run: echo "Hello, World!"
 
       - name: Build Docker image
-        run: docker build -t hello-world-app ./docker
+        run: docker build -t hello-world-app -f docker/Dockerfile .
 
       - name: Run Docker container
         run: docker run hello-world-app
