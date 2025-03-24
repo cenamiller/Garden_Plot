@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    branches:
+      - main
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Say Hello
+        run: echo "Hello, World!"
+
+      - name: Build Docker image
+        run: docker build -t hello-world-app ./docker
+
+      - name: Run Docker container
+        run: docker run hello-world-app
